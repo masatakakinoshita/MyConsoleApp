@@ -10,56 +10,59 @@ namespace MyConsoleApp
     {
         static void Main(string[] args)
         {
-            Person taro = new Person();
-            taro.name = "";
-            taro.age = -20;
-
-            Person jiro = new Person();
-            jiro.name = "Jiro";
-            jiro.age = 30;
+            Person taro = new Person("Taro", 30);
+            
+            PowerPerson jiro = new PowerPerson("Jiro",24,"jiroMail","070-7777-7777","Tokyo,Japan");
 
             Console.WriteLine(taro.getData());
-            Console.WriteLine(jiro.getData());
+            Console.WriteLine(jiro.getPowerData());
             Console.ReadKey();
         }       
     }
 
     class Person
     {
-        private string myname;
-
-        public string name
-        {
-            get { return myname; }
-            set
-            {
-                if(value != "") { myname = value; }
-                else { myname = "noname..."; }
-            }
-        }
-
-        private int old;
-
-        public int age
-        {
-            get { return old; }
-            set
-            {
-                if(value < 0) { old = 0; }
-                else { old = value; }
-            }
-        }
+        internal string name;
+        internal int age;
 
         public Person()
         {
-            myname = "no name...";
-            old = 0;
+            name = "no name...";
+            age = 0;
+        }
+
+        public Person(string s, int n)
+        {
+            name = s;
+            age = n;
         }
 
         public string getData()
         {
             string data = this.name + "(" + this.age + ")";
             return data;
+        }
+    }
+
+    class PowerPerson : Person
+    {
+        string mail;
+        string tel;
+        string address;
+
+        public PowerPerson(string name, int age, string mail, string tel, string address)
+        {
+            this.name = name;
+            this.age = age;
+            this.mail = mail;
+            this.tel = tel;
+            this.address = address;
+        }
+
+        public string getPowerData()
+        {
+            string res = name + "(" + age + ") " + mail + "," + tel + "," + address;
+            return res;
         }
     }
 }
