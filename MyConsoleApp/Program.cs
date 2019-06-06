@@ -10,50 +10,50 @@ namespace MyConsoleApp
     {
         static void Main(string[] args)
         {
-            Person taro = new Person("Taro", 31);
-            Person jiro = new Person(30);
-            Person ichiro = new Person("ichiro");
+            Person taro = new Person();
+            taro.name = "";
+            taro.age = -20;
+
+            Person jiro = new Person();
+            jiro.name = "Jiro";
+            jiro.age = 30;
 
             Console.WriteLine(taro.getData());
             Console.WriteLine(jiro.getData());
-            Console.WriteLine(ichiro.getData());
             Console.ReadKey();
         }       
     }
 
     class Person
     {
-        public string name;
-        public int age;
+        private string myname;
+
+        public string name
+        {
+            get { return myname; }
+            set
+            {
+                if(value != "") { myname = value; }
+                else { myname = "noname..."; }
+            }
+        }
+
+        private int old;
+
+        public int age
+        {
+            get { return old; }
+            set
+            {
+                if(value < 0) { old = 0; }
+                else { old = value; }
+            }
+        }
 
         public Person()
         {
-            this.name = "no name...";
-            this.age = 0;
-        }
-
-        public Person(string s)
-        {
-            this.name = s;
-            this.age = 0;
-        }
-
-        public Person(int n)
-        {
-            this.name = "no name...";
-            this.age = n;
-        }
-
-        public Person(string s, int n)
-        {
-            this.name = s;
-            this.age = n;
-        }
-
-        public void setData(string s, int n)
-        {
-            this.name = s;
-            this.age = n;
+            myname = "no name...";
+            old = 0;
         }
 
         public string getData()
