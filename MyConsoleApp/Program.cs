@@ -15,7 +15,7 @@ namespace MyConsoleApp
             PowerPerson jiro = new PowerPerson("Jiro",24,"jiroMail","070-7777-7777","Tokyo,Japan");
 
             Console.WriteLine(taro.getData());
-            Console.WriteLine(jiro.getPowerData());
+            Console.WriteLine(jiro.getData());
             Console.ReadKey();
         }       
     }
@@ -37,7 +37,7 @@ namespace MyConsoleApp
             age = n;
         }
 
-        public string getData()
+        public virtual string getData()
         {
             string data = this.name + "(" + this.age + ")";
             return data;
@@ -59,7 +59,7 @@ namespace MyConsoleApp
             this.address = address;
         }
 
-        public string getPowerData()
+        public override string getData()
         {
             string res = name + "(" + age + ") " + mail + "," + tel + "," + address;
             return res;
