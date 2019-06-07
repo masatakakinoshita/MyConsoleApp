@@ -11,11 +11,13 @@ namespace MyConsoleApp
         static void Main(string[] args)
         {
             Person taro = new Person("Taro", 30);
-            
-            PowerPerson jiro = new PowerPerson("Jiro",24,"jiroMail","070-7777-7777","Tokyo,Japan");
+            Person hanako = new Person("Hanako", 20);
 
-            Console.WriteLine(taro.getData());
-            Console.WriteLine(jiro.getData());
+            PersonUility.person = taro;
+            PersonUility.print();
+            PersonUility.person = hanako;
+            PersonUility.print();
+
             Console.ReadKey();
         }       
     }
@@ -37,32 +39,27 @@ namespace MyConsoleApp
             age = n;
         }
 
-        public virtual string getData()
+        public string getData()
         {
             string data = this.name + "(" + this.age + ")";
             return data;
         }
     }
 
-    class PowerPerson : Person
+    static class PersonUility
     {
-        string mail;
-        string tel;
-        string address;
+        public static Person person;
 
-        public PowerPerson(string name, int age, string mail, string tel, string address)
+        public static void print()
         {
-            this.name = name;
-            this.age = age;
-            this.mail = mail;
-            this.tel = tel;
-            this.address = address;
-        }
-
-        public override string getData()
-        {
-            string res = name + "(" + age + ") " + mail + "," + tel + "," + address;
-            return res;
+            if(person == null)
+            {
+                return;
+            }
+            string data = person.getData();
+            Console.WriteLine("****** Printed by personUtility *******");
+            Console.WriteLine(data);
+            Console.WriteLine("****** end ******");
         }
     }
 }
